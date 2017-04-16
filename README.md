@@ -7,9 +7,13 @@ The software will read data-cap from the API, and will only really work on GB us
 
 
 ## Initiation:
-To download necessary requirements, run the make command
+To download necessary requirements, run the make command:
 
     make
+
+To run the meter, simply run the make run command:
+
+    make run
 
 You can provide an integer as argument to specify the update interval. Data will be fetched from the API of the router, so only local connections will be made, and thus not incur traffic on your mobile connection.
 
