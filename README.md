@@ -7,9 +7,13 @@ The software will read data-cap from the API, and will only really work on GB us
 
 
 ## Initiation:
+To download necessary requirements, run the make command
+
+    make
+
 You can provide an integer as argument to specify the update interval. Data will be fetched from the API of the router, so only local connections will be made, and thus not incur traffic on your mobile connection.
 
-	main.py 10
+	make run update=10
 
 This will set an update interval of 10 seconds. The default IP for the router API is set to 192.168.0.1, the default IP of the Huawei mobile routers. If you have changed this, you need to provide the IP to the GigReader object.
 
