@@ -16,7 +16,7 @@ class About(rumps.Window):
 
     def __init__(self):
         super(About, self).__init__(title="About")
-        self.default_text = str("Version: 0.0.1rc\nAuthor: Christian")
+        self.default_text = str("Version: 1.0.0\nAuthor: Christian D. Tuen")
 
 
 class StatusBarApp(rumps.App):
