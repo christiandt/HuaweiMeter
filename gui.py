@@ -1,14 +1,19 @@
 from gigreader import GigReader
 from preferences import Preferences
-import rumps, json
+import rumps, json, requests
 
 
 class PreferencePane(rumps.Window):
 
     def __init__(self):
         super(PreferencePane, self).__init__(title="Preferences")
-        self.message = "You can modify the below configuration using JSON"
-        self.default_text = str(json.dumps(Preferences().config))
+        self.message = "You can modify the below configuration using JSON. \
+            A restart of the application is required for most properties."
+        self.default_text = str(json.dumps(Preferences().config,
+                                           sort_keys=True,
+                                           indent=4,
+                                           separators=(',', ': ')
+                                           ))
         self.add_button("Cancel")
 
 
@@ -23,8 +28,13 @@ class StatusBarApp(rumps.App):
 
     def __init__(self):
         super(StatusBarApp, self).__init__("-- GB")
-        self.preferences = Preferences()
-        self.gig_reader = GigReader(self.preferences.ip)
+        try:
+            self.preferences = Preferences()
+            self.gig_reader = GigReader(self.preferences.ip)
+        except requests.exceptions.ReadTimeout:
+            rumps.alert("Not able to connect to default IP address, please check the application preferences.")
+        except Exception, e:
+            rumps.alert(repr(e.message))
 
     @rumps.clicked("Preferences")
     def prefs(self, _):
@@ -38,7 +48,7 @@ class StatusBarApp(rumps.App):
                 self.preferences.configuration = user_configuration
                 self.preferences.write_config()
             except Exception, e:
-                rumps.alert(e.message)
+                rumps.alert(repr(e.message))
 
     @rumps.clicked("About")
     def about(self, _):

@@ -15,12 +15,8 @@ class GigReader:
         self.usage = 0
 
     def get_cookie(self):
-        try:
-            response = requests.get(self.router_web + "/html/home.html")
-            return response.headers['Set-Cookie']
-        except requests.exceptions.ConnectionError, e:
-            sys.stdout.write(repr(e.message)+"\r\n")
-            sys.exit(0)
+        response = requests.get(self.router_web + "/html/home.html", timeout=3)
+        return response.headers['Set-Cookie']
 
     def get_limit(self):
         headers = {"Content-Type": "text/html", "Cookie": self.cookie}
