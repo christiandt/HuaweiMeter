@@ -16,7 +16,7 @@ class About(rumps.Window):
 
     def __init__(self):
         super(About, self).__init__(title="About")
-        self.default_text = str("Version: 1.0.0\nAuthor: Christian D. Tuen")
+        self.default_text = str("Version: 1.0.1\nAuthor: Christian D. Tuen")
 
 
 class StatusBarApp(rumps.App):
@@ -29,9 +29,13 @@ class StatusBarApp(rumps.App):
     @rumps.clicked("Preferences")
     def prefs(self, _):
         response = PreferencePane().run()
+        requirements = ['ip', 'interval']
         if response.clicked == 1:
             try:
-                self.preferences.configuration = json.loads(str(response.text))
+                user_configuration = json.loads(str(response.text))
+                if not all(config in requirements for config in user_configuration):
+                    raise ValueError('Required configuration not part of JSON.')
+                self.preferences.configuration = user_configuration
                 self.preferences.write_config()
             except Exception, e:
                 rumps.alert(e.message)
