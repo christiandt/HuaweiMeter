@@ -58,7 +58,10 @@ class StatusBarApp(rumps.App):
     def gig_updater(self, _):
         self.gig_reader.get_cookie()
         self.gig_reader.update_usage()
-        self.title = str(self.gig_reader.get_usage()) + " GB"
+        usage = self.gig_reader.get_usage()
+        if usage == -1:
+            usage = "--"
+        self.title = str(usage) + " GB"
 
 
 if __name__ == "__main__":
