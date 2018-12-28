@@ -1,6 +1,7 @@
 # HuaweiMeter
 Command-line program to show current data usage from the Huawei Mobile WiFi router's API. 
 
+![alt tag](img/bar.png)
 
 ## Install GUI (MacOS)
 Download the latest version from [https://github.com/christiandt/HuaweiMeter/releases](https://github.com/christiandt/HuaweiMeter/releases), unzip and move to Applications folder
@@ -8,6 +9,9 @@ Download the latest version from [https://github.com/christiandt/HuaweiMeter/rel
 ## Gotchas
 The software will read data-cap from the API, and will only really work on GB usage, but can easily be adapted to count MB instead. Code is hacked together on vacation, expect stuff to break.
 
+## UI Windows
+![alt tag](img/preferences.png)
+![alt tag](img/about.png)
 
 ## Initiation:
 To download necessary requirements, run the make command:
