@@ -6,8 +6,8 @@ OPTIONS = {
     'argv_emulation': True,
     'plist': {
         'LSUIElement': True,
-        'CFBundleDisplayName': 'HuaveiMeter',
-        'CFBundleName': 'HuaveiMeter',
+        'CFBundleDisplayName': 'HuaweiMeter',
+        'CFBundleName': 'HuaweiMeter',
     },
     'iconfile': 'icon.icns',
     'packages': ['rumps', 'requests'],
