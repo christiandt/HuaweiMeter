@@ -33,6 +33,9 @@ class GigReader:
     def get_usage(self):
         return self.usage
 
+    def get_stored_limit(self):
+        return self.limit
+
     def update_usage(self):
         headers = {"Content-Type": "text/html", "Cookie": self.cookie}
         response = requests.get(self.router_web + "/api/monitoring/month_statistics", headers=headers)

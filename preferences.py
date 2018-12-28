@@ -33,6 +33,16 @@ class Preferences:
         self.configuration['interval'] = value
 
     @property
+    def show_limit(self):
+        if 'show_limit' in self.configuration:
+            return bool(self.configuration['show_limit'])
+        return False
+
+    @show_limit.setter
+    def show_limit(self, value):
+        self.configuration['show_limit'] = bool(value)
+
+    @property
     def config(self):
         return self.configuration
 

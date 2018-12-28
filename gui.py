@@ -61,7 +61,12 @@ class StatusBarApp(rumps.App):
         usage = self.gig_reader.get_usage()
         if usage == -1:
             usage = "--"
-        self.title = str(usage) + " GB"
+        new_title = str(usage)
+        if self.preferences.show_limit:
+            new_title += "/%s GB" % str(self.gig_reader.get_stored_limit())
+        else:
+            new_title += " GB"
+        self.title = new_title
 
 
 if __name__ == "__main__":
