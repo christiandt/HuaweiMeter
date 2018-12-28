@@ -8,7 +8,7 @@ import re
 
 class GigReader:
 
-    def __init__(self, ip="192.168.0.1"):
+    def __init__(self, ip="192.168.1.1"):
         self.router_web = "http://" + ip
         self.cookie = self.get_cookie()
         self.limit = self.get_limit()
@@ -33,6 +33,9 @@ class GigReader:
         else:
             root = ET.fromstring(xml_string)
             return float(re.findall(r'\d+', root[1].text)[0])
+
+    def get_usage(self):
+        return self.usage
 
     def update_usage(self):
         headers = {"Content-Type": "text/html", "Cookie": self.cookie}

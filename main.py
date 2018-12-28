@@ -4,7 +4,7 @@ from gigreader import GigReader
 import time
 import sys
 
-gig_reader = GigReader("192.168.0.1")
+gig_reader = GigReader("192.168.1.1")
 
 try:
     SLEEP_TIME = float(sys.argv[1])

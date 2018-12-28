@@ -3,3 +3,6 @@ all:
 
 run:
 	python main.py $(update)
+
+package:
+	python setup.py py2app
