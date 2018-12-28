@@ -21,7 +21,7 @@ class About(rumps.Window):
 
     def __init__(self):
         super(About, self).__init__(title="About")
-        self.default_text = str("Version: 1.0.1\nAuthor: Christian D. Tuen")
+        self.default_text = str("Version: 1.0.2\nAuthor: Christian D. Tuen")
 
 
 class StatusBarApp(rumps.App):
@@ -34,7 +34,7 @@ class StatusBarApp(rumps.App):
         except requests.exceptions.ReadTimeout:
             rumps.alert("Not able to connect to default IP address, please check the application preferences.")
         except Exception, e:
-            rumps.alert(repr(e.message))
+            rumps.alert(str(e.message))
 
     @rumps.clicked("Preferences")
     def prefs(self, _):
@@ -43,12 +43,12 @@ class StatusBarApp(rumps.App):
         if response.clicked == 1:
             try:
                 user_configuration = json.loads(str(response.text))
-                if not all(config in requirements for config in user_configuration):
-                    raise ValueError('Required configuration not part of JSON.')
+                if not all(requirement in user_configuration for requirement in requirements):
+                    raise ValueError('You are missing required properties in the JSON configuration.')
                 self.preferences.configuration = user_configuration
                 self.preferences.write_config()
             except Exception, e:
-                rumps.alert(repr(e.message))
+                rumps.alert(str(e.message))
 
     @rumps.clicked("About")
     def about(self, _):
