@@ -18,19 +18,19 @@ class Preferences:
 
     @property
     def ip(self):
-        return self.configuration['ip']
+        return str(self.configuration['ip'])
 
     @ip.setter
     def ip(self, value):
-        self.configuration['ip'] = value
+        self.configuration['ip'] = str(value)
 
     @property
     def interval(self):
-        return self.configuration['interval']
+        return int(self.configuration['interval'])
 
     @interval.setter
     def interval(self, value):
-        self.configuration['interval'] = value
+        self.configuration['interval'] = int(value)
 
     @property
     def show_limit(self):
