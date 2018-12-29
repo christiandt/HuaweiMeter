@@ -7,8 +7,7 @@ class PreferencePane(rumps.Window):
 
     def __init__(self):
         super(PreferencePane, self).__init__(title="Preferences")
-        self.message = "You can modify the below configuration using JSON. \
-            A restart of the application is required for most properties."
+        self.message = "You can modify the below configuration using JSON."
         self.default_text = str(json.dumps(Preferences().config,
                                            sort_keys=True,
                                            indent=4,
@@ -47,8 +46,15 @@ class StatusBarApp(rumps.App):
                     raise ValueError('You are missing required properties in the JSON configuration.')
                 self.preferences.configuration = user_configuration
                 self.preferences.write_config()
+                self.refresh(_)
             except Exception, e:
                 rumps.alert(str(e.message))
+
+    @rumps.clicked("Refresh")
+    def refresh(self, _):
+        self.preferences = Preferences()
+        self.gig_reader = GigReader(self.preferences.ip)
+        self.gig_updater(_)
 
     @rumps.clicked("About")
     def about(self, _):
