@@ -1,5 +1,5 @@
 # HuaweiMeter
-Command-line program to show current data usage from the Huawei Mobile WiFi router's API. 
+Mac Status Bar app and CLI tool to show current data usage from from the Huawei Mobile WiFi router's API.
 
 ![alt tag](img/bar.png)
 
